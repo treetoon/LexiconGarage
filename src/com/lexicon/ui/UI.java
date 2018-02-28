@@ -5,10 +5,10 @@ import com.lexicon.garage.GarageHandler;
 import java.util.Scanner;
 
 public class UI {
-    private GarageHandler gh = null;
+    private GarageHandler gh = new GarageHandler();
 
     public UI(){
-        //gh = new Garage(SIZE);
+
 
         welcome();
         createGarage();
@@ -19,7 +19,7 @@ public class UI {
             Scanner in = new Scanner(System.in);
             int choice=in.nextInt();
 
-            if (choice==1) {
+            if (choice == 1) {
                 //list all parked vehicles
                 System.out.println("Parked vehicles");
                 //gh.listParkedVehicles();
@@ -59,11 +59,11 @@ public class UI {
 
     }
 
-    public static void createGarage() {
+    public void createGarage() {
         System.out.println("Create garage: Input size");
-        Scanner in=new Scanner(System.in);
-        int size=in.nextInt();
-        Garage g=new Garage(size);
+        Scanner in = new Scanner(System.in);
+        int size = in.nextInt();
+        gh.addGarage(new Garage(size));
 
         //add garage
     }

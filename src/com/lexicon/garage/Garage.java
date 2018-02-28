@@ -17,8 +17,8 @@ public class Garage extends GarageHandler {
     }
 
     //functions
-    public void addVehicle(){
-        //create here
+    public void addVehicle(Vehicle v){
+        vehicles.add(v);
     }
 
     public void removeVehicle(){
