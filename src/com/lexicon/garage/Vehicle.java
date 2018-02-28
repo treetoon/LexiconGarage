@@ -12,4 +12,7 @@ public abstract class Vehicle {
     }
 
     public abstract boolean hasColor();
+
+    @Override
+    public abstract String toString();
 }

@@ -18,4 +18,10 @@ public class Motorcycle extends Vehicle {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Registration Number: " + regNum + ", Color: " + color + ", Wheels: "
+                + numOfWheels + ", Length: " + length;
+    }
 }

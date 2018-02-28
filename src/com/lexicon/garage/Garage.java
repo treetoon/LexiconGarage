@@ -21,7 +21,12 @@ public class Garage extends GarageHandler {
         vehicles.add(v);
     }
 
-    public void removeVehicle(){
+    public void removeVehicle(int index){
+        vehicles.remove(index);
+    }
 
+    public void printAllVehicles(){
+        for(Vehicle v : vehicles)
+            System.out.println(v);
     }
 }

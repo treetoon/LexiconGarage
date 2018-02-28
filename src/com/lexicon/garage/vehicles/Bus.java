@@ -18,4 +18,10 @@ public class Bus extends Vehicle {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Registration Number: " + regNum + ", Color: " + color + ", Wheels: "
+                + numOfWheels + ", Seats: " + numOfSeats;
+    }
 }

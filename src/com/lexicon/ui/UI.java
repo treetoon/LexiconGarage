@@ -1,56 +1,55 @@
 package com.lexicon.ui;
 
-import com.lexicon.garage.Garage;
 import com.lexicon.garage.GarageHandler;
+import com.lexicon.garage.vehicles.Airplane;
+import com.lexicon.garage.vehicles.Boat;
+
 import java.util.Scanner;
-import com.lexicon.garage.Vehicle;
 
 public class UI {
-    private GarageHandler gh = new GarageHandler();
+    private GarageHandler allGarages = null;
 
     public UI(){
-        superMetod();
+        exec();
     }
 
     public static void main(String[] args){
-        UI start = new UI();
+        UI ui = new UI(); //run program
     }
 
-    public void createGarage() {
-        System.out.println("Write total parking spots: ");
-        Scanner in = new Scanner(System.in);
-        int size = in.nextInt();
+    public void exec(){
+        boolean run = true;
+        int currentGarage = 0;
 
-        //gh.addGarage();
-    }
+        System.out.println("-Welcome to Garage 1.0-");
+        System.out.print("Write total parking spots: ");
 
-    public void superMetod(){
-        System.out.println("Welcome to Garage 1.0");
-        createGarage();
+        int totSpots = new Scanner(System.in).nextInt();
+        System.out.println(totSpots + " parking spots created...");
+        allGarages = new GarageHandler(totSpots);
 
-        while (true) {
+        while (run) {
             listMainFunctions();
 
-            Scanner in = new Scanner(System.in);
-            int choice = in.nextInt();
+            int choice = new Scanner(System.in).nextInt();
 
-            if (choice == 1) { //list all parked vehicles
-                System.out.println("Listing all parked vehicles: ");
-
+            //List all parked vehicles in the current garage
+            if (choice == 1) {
+                System.out.println("All Parked Vehicles");
+                allGarages.get(currentGarage).printAllVehicles();
             }
-            else if (choice == 2) {
-                //list specific parked vehicles
+            else if (choice == 2) { //list specific parked vehicles
                 System.out.println("Specific Parked vehicles");
             }
-            else if (choice==3) {
-                System.out.println("Input vehicle type");
-                in = new Scanner(System.in);
-                String s=in.next();
-
-
+            else if (choice == 3) {
+                System.out.println("Park a vehicle");
+                //in = new Scanner(System.in);
+                //String s = in.next();
+                //what kind of vehicle would you like to park?...
+                allGarages.get(currentGarage).addVehicle(new Airplane("ABB 022", "RED", 2, 8));
+                allGarages.get(currentGarage).addVehicle(new Boat("FFD 123", "BLUE", 0, 78.78));
             }
-            else if (choice == 4) {
-                //unpark vehicle
+            else if (choice == 4) { //unpark vehicle
                 System.out.println("Unpark vehicle");
             }
             else if (choice == 5) {
@@ -59,7 +58,22 @@ public class UI {
             else if (choice == 6) {
                 System.out.println("Find vehicle");
             }
+            else if (choice == 7){
+                System.out.println("Select Garage");
+                //change currentGarage var
+            }
+            else if (choice == 8){
+                System.out.println("Add Garages");
+            }
+            else if (choice == 9){
+                System.out.println("Remove Garages");
+            }
+            else if (choice == 10){ //exit
+                run = false;
+            }
         }
+
+
     }
 
     public static void listMainFunctions() {
@@ -70,7 +84,7 @@ public class UI {
         System.out.println("4. Unpark specific vehicle");
         System.out.println("5. Set maximum capacity");
         System.out.println("6. Find vehicle");
-
+        System.out.println("7. Quit");
     }
 
 
