@@ -54,4 +54,20 @@ public class Garage extends GarageHandler {
             throw new VehicleNotFoundException();
         }
     }
+
+    public List<Vehicle> findVehicles(String color) throws VehicleNotFoundException {
+        List<Vehicle> vehicles = new ArrayList<>();
+
+        for (Vehicle vehicle : this.vehicles) {
+            if (vehicle.getColor().equals(color)) {
+                vehicles.add(vehicle);
+            }
+        }
+
+        if (vehicles.size() != 0) {
+            return vehicles;
+        } else {
+            throw new VehicleNotFoundException();
+        }
+    }
 }

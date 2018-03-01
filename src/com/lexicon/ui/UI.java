@@ -114,6 +114,7 @@ public class UI {
                 System.out.println("Input find parameter");
                 System.out.println("1. Registration number");
                 System.out.println("2. Number of wheels");
+                System.out.println("3. Color");
                 Scanner in = new Scanner(System.in);
                 int findChoice = in.nextInt();
 
@@ -137,6 +138,20 @@ public class UI {
 
                     try {
                         List<Vehicle> vehicles=allGarages.get(currentGarage).findVehicles(numOfWheels);
+                        for (Vehicle v : vehicles) {
+                            System.out.println(v);
+                        }
+
+                    } catch (VehicleNotFoundException e) {
+                        System.out.println("Vehicle not found");
+                    }
+                } else if (findChoice == 3) {
+                    System.out.println("Input color");
+                    in = new Scanner(System.in);
+                    String color = in.next();
+
+                    try {
+                        List<Vehicle> vehicles = allGarages.get(currentGarage).findVehicles(color);
                         for (Vehicle v : vehicles) {
                             System.out.println(v);
                         }

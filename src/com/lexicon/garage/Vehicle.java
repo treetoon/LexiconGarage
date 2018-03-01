@@ -29,4 +29,10 @@ public abstract class Vehicle {
     public int getNumOfWheels() {
         return numOfWheels;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+
 }
