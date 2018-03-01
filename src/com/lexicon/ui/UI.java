@@ -45,8 +45,13 @@ public class UI {
             }
             else if (choice == 3) {
                 System.out.println("What kind of vehicle would you like to park?");
+                System.out.println("1. Airplane");
+                System.out.println("2. Boat");
+                System.out.println("3. Bus");
+                System.out.println("4. Car");
+                System.out.println("5. Motorcycle");
                 Scanner in=new Scanner(System.in);
-                String type=in.next();
+                int type=in.nextInt();
 
                 System.out.println("Input registration number");
                 String regNr=in.next();
@@ -54,7 +59,7 @@ public class UI {
                 System.out.println("Input color");
                 String color=in.next();
 
-                if (type.toLowerCase().equals("airplane")) {
+                if (type==1) {
                     System.out.println("Input number of wheels");
                     int numOfWheels = in.nextInt();
 
@@ -64,14 +69,14 @@ public class UI {
                     allGarages.get(currentGarage).addVehicle(new Airplane(regNr, color, numOfWheels, numOfEngines));
 
                     System.out.println("Airplane parked!");
-                } else if (type.toLowerCase().equals("boat")) {
+                } else if (type==2) {
                     System.out.println("Input cylinder volume");
                     double cylinderVolume = in.nextDouble();
 
                     allGarages.get(currentGarage).addVehicle(new Boat(regNr, color, 0, cylinderVolume));
 
                     System.out.println("Boat parked!");
-                } else if (type.toLowerCase().equals("bus")) {
+                } else if (type==3) {
                     System.out.println("Input number of wheels");
                     int numOfWheels = in.nextInt();
 
@@ -81,18 +86,42 @@ public class UI {
                     allGarages.get(currentGarage).addVehicle(new Bus(regNr, color, numOfWheels, numOfSeats));
 
                     System.out.println("Bus parked!");
-                } else if (type.toLowerCase().equals("car")) {
+                } else if (type==4) {
                     System.out.println("Input number of wheels");
                     int numOfWheels = in.nextInt();
 
                     System.out.println("Input fuel type");
-                    String fuelType = in.next();
+                    System.out.println("1. Gasoline");
+                    System.out.println("2. Diesel");
+                    System.out.println("3. Autogas");
+                    System.out.println("4. Biodiesel");
+                    System.out.println("5. Ethanol");
 
-                    //Hur fixa enum FuelType??
-                    //allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType));
+                    int fuelChoice = in.nextInt();
 
-                    //System.out.println("Car parked!");
-                } else if (type.toLowerCase().equals("motorcycle")) {
+                    if (fuelChoice == 1) {
+                        allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.GASOLINE));
+
+                        System.out.println("Car parked!");
+                    } else if (fuelChoice == 2) {
+                        allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.DIESEL));
+
+                        System.out.println("Car parked!");
+                    } else if (fuelChoice == 3) {
+                        allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.AUTOGAS));
+
+                        System.out.println("Car parked!");
+                    } else if (fuelChoice == 4) {
+                        allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.BIODIESEL));
+
+                        System.out.println("Car parked!");
+                    } else if (fuelChoice == 5) {
+                        allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.ETHANOL));
+
+                        System.out.println("Car parked!");
+                    }
+
+                } else if (type==5) {
                     System.out.println("Input number of wheels");
                     int numOfWheels = in.nextInt();
 
