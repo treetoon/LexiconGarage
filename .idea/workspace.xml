@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85a8920c-af84-45c6-9601-df82029e662c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/LexiconGarage/com/lexicon/garage/GarageHandler.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LexiconGarage/com/lexicon/garage/Vehicle.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/LexiconGarage/com/lexicon/ui/UI.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/com/lexicon/ui/UI.java" afterPath="$PROJECT_DIR$/src/com/lexicon/ui/UI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
