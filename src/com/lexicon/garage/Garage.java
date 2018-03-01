@@ -1,5 +1,7 @@
 package com.lexicon.garage;
 
+import com.lexicon.garage.exceptions.VehicleListOutOfBoundsException;
+import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 
 import java.util.ArrayList;
@@ -27,9 +29,12 @@ public class Garage extends GarageHandler {
         return vehiclesList.size();
     }
 
-    //functions
-    public void addVehicle(Vehicle v){
-        vehiclesList.add(v);
+    public void addVehicle(Vehicle v) throws VehicleListOutOfBoundsException {
+        if (!(vehiclesList.size() + 1 > maxCars)) {
+            vehiclesList.add(v);
+        } else {
+            throw new VehicleListOutOfBoundsException();
+        }
     }
 
     public void removeVehicle(String regNr) {

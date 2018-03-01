@@ -2,11 +2,10 @@ package com.lexicon.ui;
 
 import com.lexicon.garage.GarageHandler;
 import com.lexicon.garage.Vehicle;
-import com.lexicon.garage.VehicleListOutOfBoundsException;
-import com.lexicon.garage.VehicleNotFoundException;
+import com.lexicon.garage.exceptions.VehicleListOutOfBoundsException;
+import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -182,16 +181,22 @@ public class UI {
             System.out.println("Input number of engines");
             int numOfEngines = in.nextInt();
 
-            allGarages.get(currentGarage).addVehicle(new Airplane(regNr, color, numOfWheels, numOfEngines));
-
-            System.out.println("Airplane parked!");
+            try {
+                allGarages.get(currentGarage).addVehicle(new Airplane(regNr, color, numOfWheels, numOfEngines));
+                System.out.println("Airplane parked!");
+            } catch (VehicleListOutOfBoundsException e) {
+                System.out.println("Parking vehicle failed!");
+            }
         } else if (input == 2) {
             System.out.println("Input cylinder volume");
             double cylinderVolume = in.nextDouble();
 
-            allGarages.get(currentGarage).addVehicle(new Boat(regNr, color, 0, cylinderVolume));
-
-            System.out.println("Boat parked!");
+            try {
+                allGarages.get(currentGarage).addVehicle(new Boat(regNr, color, 0, cylinderVolume));
+                System.out.println("Boat parked!");
+            } catch (VehicleListOutOfBoundsException e) {
+                System.out.println("Parking vehicle failed!");
+            }
         } else if (input == 3) {
             System.out.println("Input number of wheels");
             int numOfWheels = in.nextInt();
@@ -199,9 +204,12 @@ public class UI {
             System.out.println("Input number of seats");
             int numOfSeats = in.nextInt();
 
-            allGarages.get(currentGarage).addVehicle(new Bus(regNr, color, numOfWheels, numOfSeats));
-
-            System.out.println("Bus parked!");
+            try {
+                allGarages.get(currentGarage).addVehicle(new Bus(regNr, color, numOfWheels, numOfSeats));
+                System.out.println("Bus parked!");
+            } catch (VehicleListOutOfBoundsException e) {
+                System.out.println("Parking vehicle failed!");
+            }
         } else if (input == 4) {
             System.out.println("Input number of wheels");
             int numOfWheels = in.nextInt();
@@ -216,27 +224,41 @@ public class UI {
             byte fuelChoice = in.nextByte();
 
             if (fuelChoice == 1) {
-                allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.GASOLINE));
-
-                System.out.println("Car parked!");
+                try {
+                    allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.GASOLINE));
+                    System.out.println("Car parked!");
+                } catch (VehicleListOutOfBoundsException e) {
+                    System.out.println("Parking vehicle failed!");
+                }
             } else if (fuelChoice == 2) {
-                allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.DIESEL));
-
-                System.out.println("Car parked!");
+                try {
+                    allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.DIESEL));
+                    System.out.println("Car parked!");
+                } catch (VehicleListOutOfBoundsException e) {
+                    System.out.println("Parking vehicle failed!");
+                }
             } else if (fuelChoice == 3) {
-                allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.AUTOGAS));
-
-                System.out.println("Car parked!");
+                try {
+                    allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.AUTOGAS));
+                    System.out.println("Car parked!");
+                } catch (VehicleListOutOfBoundsException e) {
+                    System.out.println("Parking vehicle failed!");
+                }
             } else if (fuelChoice == 4) {
-                allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.BIODIESEL));
-
-                System.out.println("Car parked!");
+                try {
+                    allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.BIODIESEL));
+                    System.out.println("Car parked!");
+                } catch (VehicleListOutOfBoundsException e) {
+                    System.out.println("Parking vehicle failed!");
+                }
             } else if (fuelChoice == 5) {
-                allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.ETHANOL));
-
-                System.out.println("Car parked!");
+                try {
+                    allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType.ETHANOL));
+                    System.out.println("Car parked!");
+                } catch (VehicleListOutOfBoundsException e) {
+                    System.out.println("Parking vehicle failed!");
+                }
             }
-
         } else if (input == 5) {
             System.out.println("Input number of wheels");
             int numOfWheels = in.nextInt();
@@ -244,9 +266,12 @@ public class UI {
             System.out.println("Input length");
             int length = in.nextInt();
 
-            allGarages.get(currentGarage).addVehicle(new Motorcycle(regNr, color, numOfWheels, length));
-
-            System.out.println("Motorcycle parked!");
+            try {
+                allGarages.get(currentGarage).addVehicle(new Motorcycle(regNr, color, numOfWheels, length));
+                System.out.println("Motorcycle parked!");
+            } catch (VehicleListOutOfBoundsException e) {
+                System.out.println("Parking vehicle failed!");
+            }
         }
 
     }
