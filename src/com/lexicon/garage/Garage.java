@@ -19,8 +19,8 @@ public class Garage extends GarageHandler {
     public void setMaxCars(int maxCars) throws VehicleListOutOfBoundsException {
         if(maxCars >= 0)
             this.maxCars = maxCars;
-
-        throw new VehicleListOutOfBoundsException();
+        else
+            throw new VehicleListOutOfBoundsException();
     }
 
     public int getVehiclesListSize(){

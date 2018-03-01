@@ -26,11 +26,22 @@ public class UI {
         int currentGarage = 0;
 
         System.out.println("---Welcome to Garage 1.0---");
-        System.out.print("Write the total parking spots in your first garage: ");
 
-        int totSpots = new Scanner(System.in).nextInt();
+        int totSpots = 0;
+
+        do{
+            try {
+                System.out.print("Write the total parking spots in your first garage: ");
+
+                totSpots = new Scanner(System.in).nextInt();
+                allGarages = new GarageHandler(totSpots);
+            }
+            catch (VehicleListOutOfBoundsException e){
+                System.out.println("Invalid Vehicle size...");
+            }
+        }while (allGarages == null);
+
         System.out.println(totSpots + " parking spots created inside one garage...");
-        allGarages = new GarageHandler(totSpots);
 
         Scanner sc = new Scanner(System.in);
         byte choice = 0;

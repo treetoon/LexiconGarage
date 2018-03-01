@@ -11,8 +11,11 @@ public class GarageHandler {
     {
     }
 
-    public GarageHandler(int totSpots) {
-        addGarage(totSpots);
+    public GarageHandler(int totSpots) throws VehicleListOutOfBoundsException {
+        if(totSpots > 0)
+            addGarage(totSpots); //total parking spots to add
+        else
+            throw new VehicleListOutOfBoundsException();
     }
 
     //functions
