@@ -7,16 +7,21 @@ import com.lexicon.garage.vehicles.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Garage  {
+public class Garage {
     private int maxCars; //max parking spots
     private List<Vehicle> vehiclesList = new ArrayList<>();
-
-    private int id;
 
     public Garage(int maxCars){
         this.maxCars = maxCars;
     }
 
+    //Getters & Setters
+
+    public int getVehiclesListSize(){
+        return vehiclesList.size();
+    }
+
+    //Functions
     /**
      * Changes the maximum capacity of the garage to the maxSize
      *
@@ -40,10 +45,6 @@ public class Garage  {
             vehiclesList = list;
         } else
             throw new VehiclesListOutOfBoundsException();
-    }
-
-    public int getVehiclesListSize(){
-        return vehiclesList.size();
     }
 
     public void addVehicle(Vehicle v) throws VehiclesListOutOfBoundsException{
@@ -149,6 +150,6 @@ public class Garage  {
 
     @Override
     public String toString(){
-        return "ID: " + id + ", Parking spots: " + maxCars;
+        return "Parking spots: " + maxCars;
     }
 }

@@ -99,25 +99,23 @@ public class UI {
 
                     try {
                         allGarages.printAllGarages();
-                    }
-                    catch (GaragesListOutOfBoundsException e){
-                        System.out.println("No garages exist...");
-                        break;
-                    }
 
-                    try {
                         System.out.println("Write the ID to select: ");
-                        //new Scanner(System.in).next()
-                    }
-                    catch (Exception e){
-                        System.out.println("ID does not exist...");
+                        int id = new Scanner(System.in).nextInt();
+
+                        if(allGarages.isIdValid(id)){
+                            currentGarage = id;
+                            System.out.println("Garage with ID of " + id + " selected...");
+                        }
+                    }catch (GaragesListOutOfBoundsException e){
+                        System.out.println("Garage list out of bounds...");
                     }
                     break;
                 case 8:
-
+                    //addGarage()
                     break;
                 case 9:
-
+                    //removeGarage()
                     break;
                 case 10:
                     run = false; //exit
