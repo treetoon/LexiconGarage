@@ -1,6 +1,6 @@
 package com.lexicon.garage;
 
-import com.lexicon.garage.exceptions.VehicleListOutOfBoundsException;
+import com.lexicon.garage.exceptions.VehiclesListOutOfBoundsException;
 import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 
@@ -21,9 +21,9 @@ public class Garage  {
      * Changes the maximum capacity of the garage to the maxSize
      *
      * @param maxSize maximum size of the garage
-     * @throws VehicleListOutOfBoundsException
+     * @throws VehiclesListOutOfBoundsException
      */
-    public void changeMaxCapacity(int maxSize) throws VehicleListOutOfBoundsException {
+    public void changeMaxCapacity(int maxSize) throws VehiclesListOutOfBoundsException{
         List<Vehicle> list = new ArrayList<>();
 
         if (maxSize >= 0) {
@@ -39,18 +39,18 @@ public class Garage  {
             this.maxCars = maxSize;
             vehiclesList = list;
         } else
-            throw new VehicleListOutOfBoundsException();
+            throw new VehiclesListOutOfBoundsException();
     }
 
     public int getVehiclesListSize(){
         return vehiclesList.size();
     }
 
-    public void addVehicle(Vehicle v) throws VehicleListOutOfBoundsException {
+    public void addVehicle(Vehicle v) throws VehiclesListOutOfBoundsException{
         if (!(vehiclesList.size() + 1 > maxCars)) {
             vehiclesList.add(v);
         } else {
-            throw new VehicleListOutOfBoundsException();
+            throw new VehiclesListOutOfBoundsException();
         }
     }
 
@@ -145,5 +145,10 @@ public class Garage  {
         } else {
             throw new VehicleNotFoundException();
         }
+    }
+
+    @Override
+    public String toString(){
+        return "ID: " + id + ", Parking spots: " + maxCars;
     }
 }
