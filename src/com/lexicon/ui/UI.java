@@ -29,16 +29,11 @@ public class UI {
         int totSpots = 0;
 
         do{
-            try {
-                System.out.print("Write the total parking spots in your first garage: ");
+            System.out.print("Write the total parking spots in your first garage: ");
 
-                totSpots = new Scanner(System.in).nextInt();
-                allGarages = new GarageHandler(totSpots);
-            }
-            catch (VehicleListOutOfBoundsException e){
-                System.out.println("Invalid Vehicle size...");
-            }
-        }while (allGarages == null);
+            totSpots = new Scanner(System.in).nextInt();
+            allGarages = new GarageHandler(totSpots);
+        }while (allGarages.getGarageListSize() <= 0);
 
         System.out.println(totSpots + " parking spots created inside one garage...");
 
