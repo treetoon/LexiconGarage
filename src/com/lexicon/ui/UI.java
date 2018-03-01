@@ -12,14 +12,14 @@ public class UI {
     private GarageHandler allGarages = null;
 
     public UI(){
-        exec();
+        printMenu();
     }
 
     public static void main(String[] args){
         UI ui = new UI(); //run program
     }
 
-    public void exec(){
+    public void printMenu(){
         boolean run = true;
         int currentGarage = 0;
 
@@ -35,7 +35,6 @@ public class UI {
 
         while (run) {
             listMainFunctions();
-//<<<<<<< HEAD
             choice = sc.nextByte();
 
 
@@ -128,8 +127,6 @@ public class UI {
                     break;
             }
         }
-
-
     }
 
     public void listMainFunctions() {
@@ -160,9 +157,6 @@ public class UI {
             if (type.toLowerCase().equals("airplane")) {
                 System.out.println("Input number of wheels");
                 int numOfWheels = in.nextInt();
-
-                System.out.println("Input number of engines");
-                int numOfEngines = in.nextInt();
 
                 allGarages.get(currentGarage).addVehicle(new Airplane(regNr, color, numOfWheels, numOfEngines));
 
