@@ -25,8 +25,11 @@ public class Garage extends GarageHandler {
         vehicles.remove(index);
     }
 
-    public void printAllVehicles(){
-        for(Vehicle v : vehicles)
+    public void printAllVehicles() throws VehicleNotFoundException {
+        if(vehicles.isEmpty())
+            throw new VehicleNotFoundException();
+
+        for (Vehicle v : vehicles)
             System.out.println(v);
     }
 

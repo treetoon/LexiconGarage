@@ -23,8 +23,8 @@ public class UI {
         boolean run = true;
         int currentGarage = 0;
 
-        System.out.println("-Welcome to Garage 1.0-");
-        System.out.print("Write total parking spots: ");
+        System.out.println("---Welcome to Garage 1.0---");
+        System.out.print("Write the total parking spots in your first garage: ");
 
         int totSpots = new Scanner(System.in).nextInt();
         System.out.println(totSpots + " parking spots created inside one garage...");
@@ -37,18 +37,22 @@ public class UI {
             listMainFunctions();
             choice = sc.nextByte();
 
-
             switch (choice) {
                 case 1:
                     System.out.println("Listing all parked vehicles in the current garage: ");
-                    allGarages.get(currentGarage).printAllVehicles();
+
+                    try {
+                        allGarages.get(currentGarage).printAllVehicles();
+                    }catch (VehicleNotFoundException e){
+                        System.out.println("No vehicle to list...");
+                    }
                     break;
                 case 2:
                     System.out.println("Listing all parked vehicle types in the current garage: ");
                     break;
                 case 3:
                     System.out.println("What kind of vehicle would you like to park in the current garage?");
-                    System.out.println("Choose type (Aeroplane, Boat, Bus, Car, Motorcycle), 1 - 5: ");
+                    System.out.println("Choose type (1. Aeroplane, 2. Boat, 3. Bus, 4. Car, 5. Motorcycle):");
 
                     chooseVehicle(new Scanner(System.in).nextByte(), currentGarage);
                     break;
@@ -63,10 +67,8 @@ public class UI {
                     System.out.println("Write parking spaces: ");
                     break;
                 case 6:
-                    System.out.println("Input find parameter");
-                    System.out.println("1. Registration number");
-                    System.out.println("2. Number of wheels");
-                    System.out.println("3. Color");
+                    System.out.println("What kind of property would you like to search by?");
+                    System.out.println("Choose type (1. Registration number, 2. Number of wheels, 3. Color): ");
                     findVehicle(new Scanner(System.in).nextByte(), currentGarage);
                     break;
                 case 7:
@@ -86,6 +88,7 @@ public class UI {
     }
 
     public void listMainFunctions() {
+        System.out.println();
         System.out.println("--Garage functions--");
         System.out.println("1. List all parked vehicles in the garage");
         System.out.println("2. List all vehicle types parked in the garage");
@@ -97,41 +100,38 @@ public class UI {
         System.out.println("8. Add one garage");
         System.out.println("9. Remove one garage");
         System.out.println("10. Quit");
+        System.out.println();
     }
 
     public void findVehicle(byte input, int currentGarage) {
-        Scanner in;
+        Scanner sc = new Scanner(System.in);
 
         if (input == 1) {
-            System.out.println("Input registration number to search for");
-            in = new Scanner(System.in);
-            String regNr = in.next();
+            System.out.println("Write the registration number to search for: ");
+            String regNr = sc.next();
 
             try {
                 Vehicle vehicle = allGarages.get(currentGarage).findVehicle(regNr);
                 System.out.println(vehicle);
-
             } catch (VehicleNotFoundException e) {
-                System.out.println("Vehicle not found");
+                System.out.println("Vehicle not found...");
             }
         } else if (input == 2) {
-            System.out.println("Input number of wheels");
-            in = new Scanner(System.in);
-            int numOfWheels = in.nextInt();
+            System.out.println("Write the number of wheels: ");
+            int numOfWheels = sc.nextInt();
 
             try {
                 List<Vehicle> vehicles = allGarages.get(currentGarage).findVehicles(numOfWheels);
+
                 for (Vehicle v : vehicles) {
                     System.out.println(v);
                 }
-
             } catch (VehicleNotFoundException e) {
-                System.out.println("Vehicle not found");
+                System.out.println("No vehicles found...");
             }
         } else if (input == 3) {
-            System.out.println("Input color");
-            in = new Scanner(System.in);
-            String color = in.next();
+            System.out.println("Write the color: ");
+            String color = sc.next();
 
             try {
                 List<Vehicle> vehicles = allGarages.get(currentGarage).findVehicles(color);
@@ -140,7 +140,7 @@ public class UI {
                 }
 
             } catch (VehicleNotFoundException e) {
-                System.out.println("Vehicle not found");
+                System.out.println("No vehicles found...");
             }
         }
     }
