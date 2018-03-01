@@ -83,7 +83,7 @@ public class UI {
                     int input = new Scanner(System.in).nextInt();
 
                     try {
-                        allGarages.get(currentGarage).setMaxCars(input);
+                        allGarages.get(currentGarage).changeMaxCapacity(input);
                     }catch (VehicleListOutOfBoundsException e){
                         System.out.println("Invalid size...");
                     }
@@ -189,7 +189,7 @@ public class UI {
 
             try {
                 allGarages.get(currentGarage).addVehicle(new Airplane(regNr, color, numOfWheels, numOfEngines));
-                System.out.println("Airplane parked!");
+                System.out.println("Aeroplane parked!");
             } catch (VehicleListOutOfBoundsException e) {
                 System.out.println("Parking vehicle failed!");
             }

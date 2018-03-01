@@ -7,7 +7,7 @@ import com.lexicon.garage.vehicles.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Garage extends GarageHandler {
+public class Garage  {
     private int maxCars; //max parking spots
     private List<Vehicle> vehiclesList = new ArrayList<>();
 
@@ -17,11 +17,28 @@ public class Garage extends GarageHandler {
         this.maxCars = maxCars;
     }
 
-    //set, getters
-    public void setMaxCars(int maxCars) throws VehicleListOutOfBoundsException {
-        if(maxCars >= 0)
-            this.maxCars = maxCars;
-        else
+    /**
+     * Changes the maximum capacity of the garage to the maxSize
+     *
+     * @param maxSize maximum size of the garage
+     * @throws VehicleListOutOfBoundsException
+     */
+    public void changeMaxCapacity(int maxSize) throws VehicleListOutOfBoundsException {
+        List<Vehicle> list = new ArrayList<>();
+
+        if (maxSize >= 0) {
+            if (maxSize < vehiclesList.size()) {
+
+                //Add vehicles to the new list until maxSize
+                for (Vehicle vehicle : vehiclesList) {
+                    if (list.size() < maxSize) {
+                        list.add(vehicle);
+                    }
+                }
+            }
+            this.maxCars = maxSize;
+            vehiclesList = list;
+        } else
             throw new VehicleListOutOfBoundsException();
     }
 
@@ -41,11 +58,11 @@ public class Garage extends GarageHandler {
         for (int i = 0; i < vehiclesList.size(); i++) {
             if (vehiclesList.get(i).getRegNum().equals(regNr)) {
                 vehiclesList.remove(i);
-                System.out.println("Vehicle with registration number " + regNr + " deleted");
+                System.out.println("Vehicle with registration number " + regNr + " unparked");
                 return;
             }
         }
-        System.out.println("No vehicle deleted. Wrong registration number?");
+        System.out.println("No vehicle unparked. Wrong registration number?");
 
     }
 
