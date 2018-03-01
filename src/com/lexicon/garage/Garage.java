@@ -1,5 +1,7 @@
 package com.lexicon.garage;
 
+import com.lexicon.garage.vehicles.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,38 @@ public class Garage extends GarageHandler {
 
         for (Vehicle v : vehicles)
             System.out.println(v);
+    }
+
+    public void printAllVehicleTypes() throws VehicleNotFoundException {
+        if(vehicles.isEmpty())
+            throw new VehicleNotFoundException();
+
+        boolean airplane = false, boat = false, bus = false,
+                car = false, motorcycle = false;
+
+        for (Vehicle v : vehicles)
+        {
+            if(Airplane.class == v.getClass()){
+                airplane = true;
+            }else if(Boat.class == v.getClass()){
+                boat = true;
+            }else if(Bus.class == v.getClass()){
+                bus = true;
+            }else if(Car.class == v.getClass()){
+                car = true;
+            }else if(Motorcycle.class == v.getClass()){
+                motorcycle = true;
+            }
+        }
+
+        if(airplane) System.out.println("Aeroplane");
+        if(boat) System.out.println("Boat");
+        if(bus) System.out.println("Bus");
+        if(car) System.out.println("Car");
+        if(motorcycle) System.out.println("Motorcycle");
+
+        if(!airplane && !boat && !bus && !car && !motorcycle)
+            throw new VehicleNotFoundException();
     }
 
     public Vehicle findVehicle(String regNr) throws VehicleNotFoundException {

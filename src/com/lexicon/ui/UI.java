@@ -44,15 +44,21 @@ public class UI {
                     try {
                         allGarages.get(currentGarage).printAllVehicles();
                     }catch (VehicleNotFoundException e){
-                        System.out.println("No vehicle to list...");
+                        System.out.println("No vehicles to list...");
                     }
                     break;
                 case 2:
                     System.out.println("Listing all parked vehicle types in the current garage: ");
+
+                    try {
+                        allGarages.get(currentGarage).printAllVehicleTypes();
+                    }catch (VehicleNotFoundException e){
+                        System.out.println("No vehicle types to list...");
+                    }
                     break;
                 case 3:
                     System.out.println("What kind of vehicle would you like to park in the current garage?");
-                    System.out.println("Choose type (1. Aeroplane, 2. Boat, 3. Bus, 4. Car, 5. Motorcycle):");
+                    System.out.println("Choose type (1. Aeroplane, 2. Boat, 3. Bus, 4. Car, 5. Motorcycle): ");
 
                     chooseVehicle(new Scanner(System.in).nextByte(), currentGarage);
                     break;
