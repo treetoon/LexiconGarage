@@ -1,5 +1,7 @@
 package com.lexicon.garage;
 
+import com.lexicon.garage.exceptions.VehicleListOutOfBoundsException;
+
 import java.util.ArrayList;
 import java.util.List;
 
