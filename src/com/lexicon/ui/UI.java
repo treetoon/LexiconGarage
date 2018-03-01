@@ -1,9 +1,11 @@
 package com.lexicon.ui;
 
 import com.lexicon.garage.GarageHandler;
-import com.lexicon.garage.vehicles.Airplane;
-import com.lexicon.garage.vehicles.Boat;
+import com.lexicon.garage.Vehicle;
+import com.lexicon.garage.VehicleNotFoundException;
+import com.lexicon.garage.vehicles.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UI {
@@ -33,6 +35,7 @@ public class UI {
 
         while (run) {
             listMainFunctions();
+//<<<<<<< HEAD
             choice = sc.nextByte();
 
 
@@ -49,13 +52,11 @@ public class UI {
                     System.out.println("Choose type (Aeroplane, Boat, Bus, Car, Motorcycle), 1 - 5: ");
 
                     chooseVehicle(new Scanner(System.in).nextByte());
-
-                    //allGarages.get(currentGarage).addVehicle(new Airplane("ABB 022", "RED", 2, 8));
-                    //allGarages.get(currentGarage).addVehicle(new Boat("FFD 123", "BLUE", 0, 78.78));
                     break;
                 case 4:
                     System.out.println("Which vehicle would you like to unpark in the current garage?");
                     System.out.println("Write registration number: ");
+                    //allGarages.get(currentGarage).removeVehicle();
                     break;
                 case 5:
                     System.out.println("Resize the garage to how many parking spaces? The current size is: " /* + func() */);
@@ -63,6 +64,55 @@ public class UI {
                     System.out.println("Write parking spaces: ");
                     break;
                 case 6:
+                    System.out.println("Input find parameter");
+                    System.out.println("1. Registration number");
+                    System.out.println("2. Number of wheels");
+                    System.out.println("3. Color");
+                    Scanner in = new Scanner(System.in);
+                    int findChoice = in.nextInt();
+
+                    if (findChoice==1) {
+                        System.out.println("Input registration number to search for");
+                        in = new Scanner(System.in);
+                        String regNr = in.next();
+
+                        try {
+                            Vehicle vehicle=allGarages.get(currentGarage).findVehicle(regNr);
+                            System.out.println(vehicle);
+
+                        } catch (VehicleNotFoundException e) {
+                            System.out.println("Vehicle not found");
+                        }
+                    }
+                    else if (findChoice==2) {
+                        System.out.println("Input number of wheels");
+                        in = new Scanner(System.in);
+                        int numOfWheels = in.nextInt();
+
+                        try {
+                            List<Vehicle> vehicles=allGarages.get(currentGarage).findVehicles(numOfWheels);
+                            for (Vehicle v : vehicles) {
+                                System.out.println(v);
+                            }
+
+                        } catch (VehicleNotFoundException e) {
+                            System.out.println("Vehicle not found");
+                        }
+                    } else if (findChoice == 3) {
+                        System.out.println("Input color");
+                        in = new Scanner(System.in);
+                        String color = in.next();
+
+                        try {
+                            List<Vehicle> vehicles = allGarages.get(currentGarage).findVehicles(color);
+                            for (Vehicle v : vehicles) {
+                                System.out.println(v);
+                            }
+
+                        } catch (VehicleNotFoundException e) {
+                            System.out.println("Vehicle not found");
+                        }
+                    }
                     break;
                 case 7:
                     //change currentGarage var
@@ -96,7 +146,66 @@ public class UI {
         System.out.println("10. Quit");
     }
 
-    public void chooseVehicle(byte b){
+    public void chooseVehicle(byte input){
+            System.out.println("What kind of vehicle would you like to park?");
+            Scanner in=new Scanner(System.in);
+            String type=in.next();
 
+            System.out.println("Input registration number");
+            String regNr=in.next();
+
+            System.out.println("Input color");
+            String color=in.next();
+
+            if (type.toLowerCase().equals("airplane")) {
+                System.out.println("Input number of wheels");
+                int numOfWheels = in.nextInt();
+
+                System.out.println("Input number of engines");
+                int numOfEngines = in.nextInt();
+
+                allGarages.get(currentGarage).addVehicle(new Airplane(regNr, color, numOfWheels, numOfEngines));
+
+                System.out.println("Airplane parked!");
+            } else if (type.toLowerCase().equals("boat")) {
+                System.out.println("Input cylinder volume");
+                double cylinderVolume = in.nextDouble();
+
+                allGarages.get(currentGarage).addVehicle(new Boat(regNr, color, 0, cylinderVolume));
+
+                System.out.println("Boat parked!");
+            } else if (type.toLowerCase().equals("bus")) {
+                System.out.println("Input number of wheels");
+                int numOfWheels = in.nextInt();
+
+                System.out.println("Input number of seats");
+                int numOfSeats = in.nextInt();
+
+                allGarages.get(currentGarage).addVehicle(new Bus(regNr, color, numOfWheels, numOfSeats));
+
+                System.out.println("Bus parked!");
+            } else if (type.toLowerCase().equals("car")) {
+                System.out.println("Input number of wheels");
+                int numOfWheels = in.nextInt();
+
+                System.out.println("Input fuel type");
+                String fuelType = in.next();
+
+                //Hur fixa enum FuelType??
+                //allGarages.get(currentGarage).addVehicle(new Car(regNr, color, numOfWheels, FuelType));
+
+                //System.out.println("Car parked!");
+            } else if (type.toLowerCase().equals("motorcycle")) {
+                System.out.println("Input number of wheels");
+                int numOfWheels = in.nextInt();
+
+                System.out.println("Input length");
+                int length = in.nextInt();
+
+                allGarages.get(currentGarage).addVehicle(new Motorcycle(regNr, color, numOfWheels, length));
+
+                System.out.println("Motorcycle parked!");
+            }
+        }
     }
 }

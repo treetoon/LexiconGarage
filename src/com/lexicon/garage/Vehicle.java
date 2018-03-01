@@ -11,8 +11,28 @@ public abstract class Vehicle {
         this.numOfWheels = numOfWheels;
     }
 
+
+
+    public void setRegNum(String regNum) {
+        this.regNum = regNum;
+    }
+
     public abstract boolean hasColor();
 
     @Override
     public abstract String toString();
+
+    public String getRegNum() {
+        return regNum;
+    }
+
+    public int getNumOfWheels() {
+        return numOfWheels;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+
 }
