@@ -9,6 +9,8 @@ public class Garage extends GarageHandler {
     private int MAX_CARS;
     private List<Vehicle> vehicles = new ArrayList<>();
 
+    private int id;
+
     public Garage(int MAX_CARS){
         this.MAX_CARS = MAX_CARS;
     }
@@ -23,8 +25,15 @@ public class Garage extends GarageHandler {
         vehicles.add(v);
     }
 
-    public void removeVehicle(int index){
-        vehicles.remove(index);
+    public void removeVehicle(String regNr) {
+        for (int i = 0; i < vehicles.size(); i++) {
+            if (vehicles.get(i).getRegNum().equals(regNr)) {
+                vehicles.remove(i);
+                System.out.println("Vehicle with registration number " + regNr + " deleted");
+                return;
+            }
+        }
+        System.out.println("No vehicle deleted. Wrong registration number?");
     }
 
     public void printAllVehicles() throws VehicleNotFoundException {

@@ -65,7 +65,7 @@ public class UI {
                 case 4:
                     System.out.println("Which vehicle would you like to unpark in the current garage?");
                     System.out.println("Write registration number: ");
-                    //allGarages.get(currentGarage).removeVehicle();
+                    unParkVehicle(new Scanner(System.in).next(), currentGarage);
                     break;
                 case 5:
                     System.out.println("Resize the garage to how many parking spaces? The current size is: " /* + func() */);
@@ -107,6 +107,10 @@ public class UI {
         System.out.println("9. Remove one garage");
         System.out.println("10. Quit");
         System.out.println();
+    }
+
+    public void unParkVehicle(String regNr, int currentGarage) {
+        allGarages.get(currentGarage).removeVehicle(regNr);
     }
 
     public void findVehicle(byte input, int currentGarage) {
