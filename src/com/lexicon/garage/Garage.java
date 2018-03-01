@@ -6,43 +6,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Garage extends GarageHandler {
-    private int MAX_CARS;
-    private List<Vehicle> vehicles = new ArrayList<>();
+    private int maxCars; //max parking spots
+    private List<Vehicle> vehiclesList = new ArrayList<>();
 
-    public Garage(int MAX_CARS){
-        this.MAX_CARS = MAX_CARS;
+    public Garage(int maxCars){
+        this.maxCars = maxCars;
     }
 
     //set, getters
-    public void setMAX_CARS(int MAX_CARS){
-        this.MAX_CARS = MAX_CARS;
+    public void setMaxCars(int maxCars) throws VehicleListOutOfBoundsException {
+        if(maxCars >= 0)
+            this.maxCars = maxCars;
+
+        throw new VehicleListOutOfBoundsException();
+    }
+
+    public int getVehiclesListSize(){
+        return vehiclesList.size();
     }
 
     //functions
     public void addVehicle(Vehicle v){
-        vehicles.add(v);
+        vehiclesList.add(v);
     }
 
     public void removeVehicle(int index){
-        vehicles.remove(index);
+        vehiclesList.remove(index);
     }
 
     public void printAllVehicles() throws VehicleNotFoundException {
-        if(vehicles.isEmpty())
+        if(vehiclesList.isEmpty())
             throw new VehicleNotFoundException();
 
-        for (Vehicle v : vehicles)
+        for (Vehicle v : vehiclesList)
             System.out.println(v);
     }
 
     public void printAllVehicleTypes() throws VehicleNotFoundException {
-        if(vehicles.isEmpty())
+        if(vehiclesList.isEmpty())
             throw new VehicleNotFoundException();
 
         boolean airplane = false, boat = false, bus = false,
                 car = false, motorcycle = false;
 
-        for (Vehicle v : vehicles)
+        for (Vehicle v : vehiclesList)
         {
             if(Airplane.class == v.getClass()){
                 airplane = true;
@@ -68,7 +75,7 @@ public class Garage extends GarageHandler {
     }
 
     public Vehicle findVehicle(String regNr) throws VehicleNotFoundException {
-        for (Vehicle vehicle : vehicles) {
+        for (Vehicle vehicle : vehiclesList) {
             if (vehicle.getRegNum().equals(regNr)) {
                 return vehicle;
             }
@@ -79,7 +86,7 @@ public class Garage extends GarageHandler {
     public List<Vehicle> findVehicles(int numOfWheels) throws VehicleNotFoundException {
         List<Vehicle> vehicles = new ArrayList<>();
 
-        for (Vehicle vehicle : this.vehicles) {
+        for (Vehicle vehicle : this.vehiclesList) {
             if (vehicle.getNumOfWheels() == numOfWheels) {
                 vehicles.add(vehicle);
             }
@@ -95,7 +102,7 @@ public class Garage extends GarageHandler {
     public List<Vehicle> findVehicles(String color) throws VehicleNotFoundException {
         List<Vehicle> vehicles = new ArrayList<>();
 
-        for (Vehicle vehicle : this.vehicles) {
+        for (Vehicle vehicle : this.vehiclesList) {
             if (vehicle.getColor().equals(color)) {
                 vehicles.add(vehicle);
             }

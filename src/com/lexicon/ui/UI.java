@@ -2,9 +2,11 @@ package com.lexicon.ui;
 
 import com.lexicon.garage.GarageHandler;
 import com.lexicon.garage.Vehicle;
+import com.lexicon.garage.VehicleListOutOfBoundsException;
 import com.lexicon.garage.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -68,9 +70,18 @@ public class UI {
                     //allGarages.get(currentGarage).removeVehicle();
                     break;
                 case 5:
-                    System.out.println("Resize the garage to how many parking spaces? The current size is: " /* + func() */);
+                    System.out.println("Resize the garage to how many parking spaces? The current size is: "
+                            + allGarages.get(currentGarage).getVehiclesListSize());
                     System.out.println("WARNING: This may completely destroy and annihilate currently parked vehicles!");
                     System.out.println("Write parking spaces: ");
+
+                    int input = new Scanner(System.in).nextInt();
+
+                    try {
+                        allGarages.get(currentGarage).setMaxCars(input);
+                    }catch (VehicleListOutOfBoundsException e){
+                        System.out.println("Invalid size...");
+                    }
                     break;
                 case 6:
                     System.out.println("What kind of property would you like to search by?");
