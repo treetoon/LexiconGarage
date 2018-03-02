@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GarageHandler {
-
     private List<Garage> garagesList = new ArrayList<>();
 
     public GarageHandler()
@@ -23,8 +22,6 @@ public class GarageHandler {
         }
     }
 
-    //Getters & Setters
-
     public Garage get(int index) {
         return garagesList.get(index);
     }
@@ -33,9 +30,11 @@ public class GarageHandler {
         return garagesList.size();
     }
 
-
-    //Functions
-
+    /**
+     * Adds a Garage with a maximum capacity (total parking spots)
+     * @param totSpots number of total parking spots
+     * @throws VehiclesListOutOfBoundsException
+     */
     public void addGarage(int totSpots) throws VehiclesListOutOfBoundsException{
         if(totSpots > 0)
             garagesList.add(new Garage(totSpots));
@@ -43,6 +42,11 @@ public class GarageHandler {
             throw new VehiclesListOutOfBoundsException();
     }
 
+    /**
+     * Removes a specific Garage, indicated by the index
+     * @param index index of the Garage to be removed
+     * @throws VehiclesListOutOfBoundsException
+     */
     public void removeGarage(int index) throws VehiclesListOutOfBoundsException {
         if(index >= 0)
             garagesList.remove(index);
@@ -50,6 +54,10 @@ public class GarageHandler {
             throw new VehiclesListOutOfBoundsException();
     }
 
+    /**
+     * Prints all Garages
+     * @throws GaragesListOutOfBoundsException
+     */
     public void printAllGarages() throws GaragesListOutOfBoundsException {
         if(garagesList.isEmpty())
             throw new GaragesListOutOfBoundsException();
@@ -63,8 +71,8 @@ public class GarageHandler {
         }
     }
 
-    /***
-     * Check if the entered garage id is within bounds of the ArrayList
+    /**
+     * Checks if the entered Garage id is within bounds of the ArrayList
      *
      * @param id : used to select a garage in the ArrayList
      * @return bool : returns true if within bounds
