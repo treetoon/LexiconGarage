@@ -11,6 +11,17 @@ public abstract class Vehicle {
         this.numOfWheels = numOfWheels;
     }
 
+    /**
+     * Returns a String of useful information about a specific vehicle
+     * @return a String of vehicle data
+     */
+    @Override
+    public abstract String toString();
+
+    /**
+     * Returns a message containing the color of the specified vehicle
+     * @return a String message containing a color
+     */
     public abstract boolean hasColor();
 
     //Getters & Setters
@@ -30,7 +41,4 @@ public abstract class Vehicle {
     public String getColor() {
         return color;
     }
-
-    @Override
-    public abstract String toString();
 }

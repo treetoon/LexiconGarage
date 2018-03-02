@@ -22,6 +22,7 @@ public class Garage {
     }
 
     //Functions
+
     /**
      * Changes the maximum capacity of the garage to the maxSize
      *
@@ -150,7 +151,7 @@ public class Garage {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Parking spots: " + maxCars;
     }
 }

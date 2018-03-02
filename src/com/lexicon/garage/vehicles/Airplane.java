@@ -11,7 +11,7 @@ public class Airplane extends Vehicle {
     }
 
     @Override
-    public boolean hasColor(){
+    public boolean hasColor() {
         if(color != null) {
             System.out.println("This airplane is " + color);
             return true;

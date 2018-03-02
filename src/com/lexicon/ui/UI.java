@@ -7,6 +7,7 @@ import com.lexicon.garage.exceptions.GaragesListOutOfBoundsException;
 import com.lexicon.garage.exceptions.VehiclesListOutOfBoundsException;
 import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
+import com.lexicon.garage.vehicles.types.FuelType;
 
 import java.util.List;
 import java.util.Scanner;
