@@ -17,18 +17,14 @@ public class Garage {
         this.name = name;
     }
 
-    //Getters & Setters
-
     public int getVehiclesListSize(){
         return vehiclesList.size();
     }
 
-    //Functions
-
     /**
-     * Changes the maximum capacity of the garage to the maxSize
+     * Changes the maximum capacity of the Garage to the maxSize
      *
-     * @param maxSize maximum size of the garage
+     * @param maxSize maximum size of the Garage
      * @throws VehiclesListOutOfBoundsException
      */
     public void changeMaxCapacity(int maxSize) throws VehiclesListOutOfBoundsException{
@@ -51,6 +47,11 @@ public class Garage {
             throw new VehiclesListOutOfBoundsException();
     }
 
+    /**
+     * Adds a Vehicle to the ArrayList of Vehicles
+     * @param v Vehicle to be added
+     * @throws VehiclesListOutOfBoundsException
+     */
     public void addVehicle(Vehicle v) throws VehiclesListOutOfBoundsException{
         if (!(vehiclesList.size() + 1 > maxCars)) {
             vehiclesList.add(v);
@@ -59,6 +60,10 @@ public class Garage {
         }
     }
 
+    /**
+     * Removes a Vehicle from the ArrayList of Vehicles, indicated by the registration number
+     * @param regNr registration number
+     */
     public void removeVehicle(String regNr) {
         for (int i = 0; i < vehiclesList.size(); i++) {
             if (vehiclesList.get(i).getRegNum().equals(regNr)) {
@@ -71,6 +76,10 @@ public class Garage {
 
     }
 
+    /**
+     * Prints all Vehicles
+     * @throws VehicleNotFoundException
+     */
     public void printAllVehicles() throws VehicleNotFoundException {
         if(vehiclesList.isEmpty())
             throw new VehicleNotFoundException();
@@ -79,6 +88,10 @@ public class Garage {
             System.out.println(v);
     }
 
+    /**
+     * Prints the types of Vehicles in the ArrayList of Vehicles
+     * @throws VehicleNotFoundException
+     */
     public void printAllVehicleTypes() throws VehicleNotFoundException {
         if(vehiclesList.isEmpty())
             throw new VehicleNotFoundException();
@@ -111,6 +124,12 @@ public class Garage {
             throw new VehicleNotFoundException();
     }
 
+    /**
+     * Finds a Vehicle by registration number
+     * @param regNr registration number
+     * @return found Vehicle
+     * @throws VehicleNotFoundException
+     */
     public Vehicle findVehicle(String regNr) throws VehicleNotFoundException {
         for (Vehicle vehicle : vehiclesList) {
             if (vehicle.getRegNum().equals(regNr)) {
@@ -120,6 +139,12 @@ public class Garage {
         throw new VehicleNotFoundException();
     }
 
+    /**
+     * Finds a List of Vehicles by number of wheels
+     * @param numOfWheels number of wheels
+     * @return List of Vehicles
+     * @throws VehicleNotFoundException
+     */
     public List<Vehicle> findVehicles(int numOfWheels) throws VehicleNotFoundException {
         List<Vehicle> vehicles = new ArrayList<>();
 
@@ -136,6 +161,12 @@ public class Garage {
         }
     }
 
+    /**
+     * Finds a List of Vehicles by color
+     * @param color color of Vehicle
+     * @return List of Vehicles
+     * @throws VehicleNotFoundException
+     */
     public List<Vehicle> findVehicles(String color) throws VehicleNotFoundException {
         List<Vehicle> vehicles = new ArrayList<>();
 

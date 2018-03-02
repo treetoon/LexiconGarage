@@ -93,6 +93,7 @@ public class UI {
 
                     try {
                         allGarages.get(currentGarage).changeMaxCapacity(input);
+                        System.out.println("Changed max capacity");
                     }catch (VehiclesListOutOfBoundsException e){
                         System.out.println("Invalid size...");
                     }
@@ -147,10 +148,10 @@ public class UI {
                     try {
                         if (currentGarage != garageIndex) {
                             allGarages.removeGarage(garageIndex);
+                            System.out.println("Garage " + garageIndex + " removed!");
                         } else {
                             System.out.println("You chosed the current garage. You have to select another garage before removing current garage!");
                         }
-                        System.out.println("Garage " + garageIndex + " removed!");
                     } catch (VehiclesListOutOfBoundsException e) {
                         System.out.println("Removing garage failed...");
                     }
@@ -179,10 +180,20 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Unparks a specific Vehicle (indicated by registration number) in the current Garage
+     * @param regNr registration number
+     * @param currentGarage index of the current Garage
+     */
     public void unParkVehicle(String regNr, int currentGarage) {
         allGarages.get(currentGarage).removeVehicle(regNr);
     }
 
+    /**
+     * Finds a Vehicle in the current Garage
+     * @param input indicating the function the user has chosen
+     * @param currentGarage index of the current Garage
+     */
     public void findVehicle(byte input, int currentGarage) {
         Scanner sc = new Scanner(System.in);
 
@@ -225,6 +236,11 @@ public class UI {
         }
     }
 
+    /**
+     * Parks a specific Vehicle in the current Garage
+     * @param input input indicating the type of Vehicle
+     * @param currentGarage index of current Garage
+     */
     public void parkVehicle(byte input, int currentGarage) {
         System.out.println("Input registration number");
 
