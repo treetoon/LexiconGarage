@@ -150,7 +150,7 @@ public class Garage {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Parking spots: " + maxCars;
     }
 }
