@@ -18,7 +18,7 @@
     <favorites_list name="LexiconGarage" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5515371">
+    <splitter split-orientation="horizontal" split-proportion="0.5871007">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="GarageHandler.java" pinned="false" current-in-tab="false">
@@ -31,16 +31,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Garage.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Garage.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/lexicon/garage/Garage.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="702">
                   <caret line="152" column="29" lean-forward="false" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#4680#4681#0" expanded="true" />
                     <element signature="e#4730#4731#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Airplane.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/com/lexicon/garage/vehicles/Airplane.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="221">
+                  <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -52,7 +61,7 @@
           <file leaf-file-name="UI.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/lexicon/ui/UI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
+                <state relative-caret-position="-3837">
                   <caret line="57" column="26" lean-forward="false" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -98,14 +107,14 @@
         <option value="$PROJECT_DIR$/src/com/lexicon/garage/exceptions/GarageNotFoundException.java" />
         <option value="$PROJECT_DIR$/src/com/lexicon/garage/GarageHandler.java" />
         <option value="$PROJECT_DIR$/src/com/lexicon/ui/UI.java" />
-        <option value="$PROJECT_DIR$/src/com/lexicon/garage/vehicles/Airplane.java" />
         <option value="$PROJECT_DIR$/src/com/lexicon/garage/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/com/lexicon/garage/vehicles/types/FuelType.java" />
         <option value="$PROJECT_DIR$/src/com/lexicon/garage/Garage.java" />
+        <option value="$PROJECT_DIR$/src/com/lexicon/garage/vehicles/Airplane.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="1170" />
     <option name="height" value="1047" />
@@ -328,7 +337,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -403,7 +412,6 @@
           <caret line="5" column="43" lean-forward="true" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4680#4681#0" expanded="true" />
             <element signature="e#4730#4731#0" expanded="true" />
           </folding>
         </state>
@@ -566,7 +574,6 @@
           <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4680#4681#0" expanded="true" />
             <element signature="e#4730#4731#0" expanded="true" />
           </folding>
         </state>
@@ -662,7 +669,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lexicon/ui/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="-3837">
           <caret line="57" column="26" lean-forward="false" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -722,14 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/lexicon/garage/vehicles/Airplane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/lexicon/garage/Vehicle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -753,9 +752,16 @@
           <caret line="152" column="29" lean-forward="false" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4680#4681#0" expanded="true" />
             <element signature="e#4730#4731#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lexicon/garage/vehicles/Airplane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
