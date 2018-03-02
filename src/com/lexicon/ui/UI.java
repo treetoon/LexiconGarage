@@ -207,6 +207,13 @@ public class UI {
         try {
             if (currentGarage != garageIndex) {
                 allGarages.removeGarage(garageIndex);
+
+                if (allGarages.getGarageListSize() >= garageIndex-1) {
+                    currentGarage--;
+                }
+
+                System.out.println("CurrentGarage: " + currentGarage);
+
                 System.out.println("Garage " + garageIndex + " removed!");
             } else {
                 System.out.println("You chosed the current garage. You have to select another garage before removing current garage!");
