@@ -212,8 +212,6 @@ public class UI {
                     currentGarage--;
                 }
 
-                System.out.println("CurrentGarage: " + currentGarage);
-
                 System.out.println("Garage " + garageIndex + " removed!");
             } else {
                 System.out.println("You chosed the current garage. You have to select another garage before removing current garage!");
