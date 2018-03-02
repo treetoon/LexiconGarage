@@ -1,17 +1,16 @@
 package com.lexicon.garage;
 
 import com.lexicon.garage.exceptions.GaragesListOutOfBoundsException;
+import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.exceptions.VehiclesListOutOfBoundsException;
+import com.lexicon.garage.vehicles.Airplane;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GarageHandler {
+public class GarageHandler implements Serializable {
     private List<Garage> garagesList = new ArrayList<>();
 
     public GarageHandler()
@@ -94,23 +93,39 @@ public class GarageHandler {
         throw new GaragesListOutOfBoundsException();
     }
 
+//    public static void readFile(){
+//        try(BufferedReader buff = new BufferedReader(new FileReader("garages.txt")))
+//        {
+//            StringBuilder builder = new StringBuilder();
+//            String oneRow = "";
+//
+//            System.out.println("Garage file read successfully...");
+//
+//            while(oneRow != null) {
+//                oneRow = buff.readLine();
+//                builder.append(oneRow);
+//            }
+//
+//            System.out.println(builder);
+//        }catch (IOException e){
+//            System.out.println("Could not locate the garage file... " +
+//                    "Please name it \"garages.txt\" and place it in the corresponding directory. ");
+//        }
+//    }
+
     public static void readFile(){
-        try(BufferedReader buff = new BufferedReader(new FileReader("garages.txt")))
-        {
-            StringBuilder builder = new StringBuilder();
-            String oneRow = "";
 
-            System.out.println("Garage file read successfully...");
+    }
 
-            while(oneRow != null) {
-                oneRow = buff.readLine();
-                builder.append(oneRow);
-            }
-
-            System.out.println(builder);
-        }catch (IOException e){
-            System.out.println("Could not locate the garage file... " +
-                    "Please name it \"garages.txt\" and place it in the corresponding directory. ");
+    public void writeFile(GarageHandler gh) {
+        try {
+            FileOutputStream f = new FileOutputStream(new File("garages.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            o.writeObject(gh);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

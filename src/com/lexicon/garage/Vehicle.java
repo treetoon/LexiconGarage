@@ -1,6 +1,8 @@
 package com.lexicon.garage;
 
-public abstract class Vehicle {
+import java.io.Serializable;
+
+public abstract class Vehicle implements Serializable {
     protected String regNum;
     protected String color;
     protected int numOfWheels;

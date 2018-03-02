@@ -15,12 +15,10 @@ public class UI {
     private GarageHandler allGarages = null;
     private int currentGarage = 0;
 
-    public UI() {
-        printMenu();
+    public UI() { printMenu();
     }
 
     public static void main(String[] args) {
-        GarageHandler.readFile();
         //UI ui = new UI(); //run program
     }
 

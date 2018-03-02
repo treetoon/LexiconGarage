@@ -4,10 +4,11 @@ import com.lexicon.garage.exceptions.VehiclesListOutOfBoundsException;
 import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Garage {
+public class Garage implements Serializable {
     private int maxCars; //max parking spots
     private String name;
     private List<Vehicle> vehiclesList = new ArrayList<>();
