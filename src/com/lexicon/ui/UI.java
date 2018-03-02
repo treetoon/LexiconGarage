@@ -8,6 +8,10 @@ import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 import com.lexicon.garage.vehicles.types.FuelType;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,15 +35,21 @@ public class UI {
         int totSpots = 0;
 
         do{
-            Scanner scanner = new Scanner(System.in);
+            if (new File("garages.txt").exists()) {
+                allGarages=new GarageHandler();
+                allGarages.readFile();
+           } else {
+                Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Give the garage a name: ");
-            firstGarageName = scanner.next();
+                System.out.print("Give the garage a name: ");
+                firstGarageName = scanner.next();
 
-            System.out.print("Write the total parking spots in your first garage: ");
-            totSpots = scanner.nextInt();
+                System.out.print("Write the total parking spots in your first garage: ");
+                totSpots = scanner.nextInt();
 
-            allGarages = new GarageHandler(totSpots, firstGarageName);
+                allGarages = new GarageHandler(totSpots, firstGarageName);
+            }
+
         }while (allGarages.getGarageListSize() <= 0);
 
         System.out.println(totSpots + " parking spots created inside one garage...");
