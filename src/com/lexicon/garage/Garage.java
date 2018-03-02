@@ -9,10 +9,12 @@ import java.util.List;
 
 public class Garage {
     private int maxCars; //max parking spots
+    private String name;
     private List<Vehicle> vehiclesList = new ArrayList<>();
 
-    public Garage(int maxCars){
+    public Garage(int maxCars, String name){
         this.maxCars = maxCars;
+        this.name = name;
     }
 
     //Getters & Setters
@@ -152,6 +154,6 @@ public class Garage {
 
     @Override
     public String toString() {
-        return "Parking spots: " + maxCars;
+        return  "Name: " + name + ", Parking spots: " + maxCars;
     }
 }

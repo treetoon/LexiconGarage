@@ -26,16 +26,22 @@ public class UI {
     public void printMenu() {
         boolean run = true;
         int currentGarage = 0;
+        String firstGarageName;
 
-        System.out.println("---Welcome to Garage 1.0---");
+        System.out.println("---Welcome to Garage 0.1---");
 
         int totSpots = 0;
 
         do{
-            System.out.print("Write the total parking spots in your first garage: ");
+            Scanner scanner = new Scanner(System.in);
 
-            totSpots = new Scanner(System.in).nextInt();
-            allGarages = new GarageHandler(totSpots);
+            System.out.print("Give the garage a name: ");
+            firstGarageName = scanner.next();
+
+            System.out.print("Write the total parking spots in your first garage: ");
+            totSpots = scanner.nextInt();
+
+            allGarages = new GarageHandler(totSpots, firstGarageName);
         }while (allGarages.getGarageListSize() <= 0);
 
         System.out.println(totSpots + " parking spots created inside one garage...");
@@ -114,13 +120,19 @@ public class UI {
                     }
                     break;
                 case 8:
-                    System.out.print("How many parking spots would you like in your new garage?");
-                    int parkingSpots = new Scanner(System.in).nextInt();
+                    Scanner in = new Scanner(System.in);
+
+                    System.out.print("What do you want the garage to be called? ");
+                    String name = in.next();
+
+                    System.out.print("How many parking spots would you like in your new garage? ");
+                    int parkingSpots = in.nextInt();
 
                     try {
-                        allGarages.addGarage(parkingSpots);
+                        allGarages.addGarage(parkingSpots, name);
+                        System.out.print("Garage created...");
                     } catch (VehiclesListOutOfBoundsException e) {
-                        System.out.println("Creating garage failed");
+                        System.out.println("Creating garage failed...");
                     }
                     break;
                 case 9:
@@ -129,7 +141,7 @@ public class UI {
                     } catch (GaragesListOutOfBoundsException e) {
                         System.out.println("Printing error..");
                     }
-                    System.out.println("Which garage would you like to remove?");
+                    System.out.println("Which garage would you like to remove? ");
                     int garageIndex = new Scanner(System.in).nextInt();
 
                     try {
@@ -140,7 +152,7 @@ public class UI {
                         }
                         System.out.println("Garage " + garageIndex + " removed!");
                     } catch (VehiclesListOutOfBoundsException e) {
-                        System.out.println("Removing garage failed");
+                        System.out.println("Removing garage failed...");
                     }
 
                     break;

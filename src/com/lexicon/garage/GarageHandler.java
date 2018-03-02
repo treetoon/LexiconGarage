@@ -15,9 +15,9 @@ public class GarageHandler {
     {
     }
 
-    public GarageHandler(int totSpots) {
+    public GarageHandler(int totSpots, String name) {
         try{
-            addGarage(totSpots); //total parking spots to add
+            addGarage(totSpots, name); //total parking spots to add
         }catch (VehiclesListOutOfBoundsException e){
             System.out.println("Invalid Vehicle size...");
         }
@@ -36,9 +36,9 @@ public class GarageHandler {
 
     //Functions
 
-    public void addGarage(int totSpots) throws VehiclesListOutOfBoundsException{
+    public void addGarage(int totSpots, String name) throws VehiclesListOutOfBoundsException{
         if(totSpots > 0)
-            garagesList.add(new Garage(totSpots));
+            garagesList.add(new Garage(totSpots, name));
         else
             throw new VehiclesListOutOfBoundsException();
     }
