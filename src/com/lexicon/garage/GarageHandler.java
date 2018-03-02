@@ -3,6 +3,10 @@ package com.lexicon.garage;
 import com.lexicon.garage.exceptions.GaragesListOutOfBoundsException;
 import com.lexicon.garage.exceptions.VehiclesListOutOfBoundsException;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -88,5 +92,25 @@ public class GarageHandler {
             return true;
 
         throw new GaragesListOutOfBoundsException();
+    }
+
+    public static void readFile(){
+        try(BufferedReader buff = new BufferedReader(new FileReader("garages.txt")))
+        {
+            StringBuilder builder = new StringBuilder();
+            String oneRow = "";
+
+            System.out.println("Garage file read successfully...");
+
+            while(oneRow != null) {
+                oneRow = buff.readLine();
+                builder.append(oneRow);
+            }
+
+            System.out.println(builder);
+        }catch (IOException e){
+            System.out.println("Could not locate the garage file... " +
+                    "Please name it \"garages.txt\" and place it in the corresponding directory. ");
+        }
     }
 }

@@ -20,7 +20,8 @@ public class UI {
     }
 
     public static void main(String[] args) {
-        UI ui = new UI(); //run program
+        GarageHandler.readFile();
+        //UI ui = new UI(); //run program
     }
 
     public void printMenu() {
