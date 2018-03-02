@@ -19,7 +19,7 @@ public class UI {
     }
 
     public static void main(String[] args) {
-        //UI ui = new UI(); //run program
+        UI ui = new UI(); //run program
     }
 
     public void printMenu() {
@@ -80,6 +80,9 @@ public class UI {
                     menuDisplay_RemoveOneGarage();
                     break;
                 case 10:
+                    menuDisplay_saveToFile();
+                    break;
+                case 11:
                     run = false; //exit
                     break;
             }
@@ -98,7 +101,9 @@ public class UI {
         System.out.println("7. Select a garage to be used");
         System.out.println("8. Add one garage");
         System.out.println("9. Remove one garage");
-        System.out.println("10. Quit" + "\n");
+        System.out.println("10. Save to file");
+        System.out.println("11. Quit");
+        System.out.println();
         System.out.print("Write to select: ");
 
     }
@@ -218,6 +223,10 @@ public class UI {
         } catch (VehiclesListOutOfBoundsException e) {
             System.out.println("Removing garage failed...");
         }
+    }
+
+    private void menuDisplay_saveToFile(){
+        allGarages.writeFile();
     }
 
     /**

@@ -113,15 +113,26 @@ public class GarageHandler implements Serializable {
 //        }
 //    }
 
-    public static void readFile(){
-
+    public void readFile(){
+        try {
+            FileInputStream fi = new FileInputStream(new File("garages.txt"));
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            garagesList = (ArrayList<Garage>) oi.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void writeFile(GarageHandler gh) {
+    public void writeFile() {
         try {
             FileOutputStream f = new FileOutputStream(new File("garages.txt"));
             ObjectOutputStream o = new ObjectOutputStream(f);
-            o.writeObject(gh);
+            o.writeObject(garagesList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
