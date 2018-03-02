@@ -1,6 +1,5 @@
 package com.lexicon.ui;
 
-import com.lexicon.garage.Garage;
 import com.lexicon.garage.GarageHandler;
 import com.lexicon.garage.Vehicle;
 import com.lexicon.garage.exceptions.GaragesListOutOfBoundsException;
@@ -14,6 +13,7 @@ import java.util.Scanner;
 
 public class UI {
     private GarageHandler allGarages = null;
+    private int currentGarage = 0;
 
     public UI() {
         printMenu();
@@ -25,7 +25,6 @@ public class UI {
 
     public void printMenu() {
         boolean run = true;
-        int currentGarage = 0;
         String firstGarageName;
 
         System.out.println("---Welcome to Garage 0.1---");
@@ -50,112 +49,36 @@ public class UI {
         byte choice = 0;
 
         while (run) {
-            listMainFunctions();
+            menuDisplay();
             choice = sc.nextByte();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Listing all parked vehicles in the current garage: ");
-
-                    try {
-                        allGarages.get(currentGarage).printAllVehicles();
-                    }catch (VehicleNotFoundException e){
-                        System.out.println("No vehicles to list...");
-                    }
+                    menuDisplay_AllVehicles();
                     break;
                 case 2:
-                    System.out.println("Listing all parked vehicle types in the current garage: ");
-
-                    try {
-                        allGarages.get(currentGarage).printAllVehicleTypes();
-                    }catch (VehicleNotFoundException e){
-                        System.out.println("No vehicle types to list...");
-                    }
+                    menuDisplay_AllVehicleTypes();
                     break;
                 case 3:
-                    System.out.println("What kind of vehicle would you like to park in the current garage?");
-                    System.out.println("Choose type (1. Aeroplane, 2. Boat, 3. Bus, 4. Car, 5. Motorcycle): ");
-
-                    parkVehicle(new Scanner(System.in).nextByte(), currentGarage);
+                    menuDisplay_ParkVehicle();
                     break;
                 case 4:
-                    System.out.println("Which vehicle would you like to unpark in the current garage?");
-                    System.out.println("Write registration number: ");
-                    unParkVehicle(new Scanner(System.in).next(), currentGarage);
+                    menuDisplay_UnparkVehicle();
                     break;
                 case 5:
-                    System.out.println("Resize the garage to how many parking spaces? The current size is: "
-                            + allGarages.get(currentGarage).getVehiclesListSize());
-                    System.out.println("WARNING: This may completely destroy and annihilate currently parked vehicles!");
-                    System.out.println("Write parking spaces: ");
-
-                    int input = new Scanner(System.in).nextInt();
-
-                    try {
-                        allGarages.get(currentGarage).changeMaxCapacity(input);
-                        System.out.println("Changed max capacity");
-                    }catch (VehiclesListOutOfBoundsException e){
-                        System.out.println("Invalid size...");
-                    }
+                    menuDisplay_setGarageSize();
                     break;
                 case 6:
-                    System.out.println("What kind of property would you like to search by?");
-                    System.out.println("Choose type (1. Registration number, 2. Number of wheels, 3. Color): ");
-                    findVehicle(new Scanner(System.in).nextByte(), currentGarage);
+                    menuDisplay_searchByVehicleProperty();
                     break;
                 case 7:
-                    System.out.println("Listing all garages by their ID: ");
-
-                    try {
-                        allGarages.printAllGarages();
-
-                        System.out.println("Write the ID to select: ");
-                        int id = new Scanner(System.in).nextInt();
-
-                        if(allGarages.isIdValid(id)){
-                            currentGarage = id;
-                            System.out.println("Garage with ID of " + id + " selected...");
-                        }
-                    }catch (GaragesListOutOfBoundsException e){
-                        System.out.println("Garage list out of bounds...");
-                    }
+                    menuDisplay_selectGarage();
                     break;
                 case 8:
-                    Scanner in = new Scanner(System.in);
-
-                    System.out.print("What do you want the garage to be called? ");
-                    String name = in.next();
-
-                    System.out.print("How many parking spots would you like in your new garage? ");
-                    int parkingSpots = in.nextInt();
-
-                    try {
-                        allGarages.addGarage(parkingSpots, name);
-                        System.out.print("Garage created...");
-                    } catch (VehiclesListOutOfBoundsException e) {
-                        System.out.println("Creating garage failed...");
-                    }
+                    menuDisplay_addOneGarage();
                     break;
                 case 9:
-                    try {
-                        allGarages.printAllGarages();
-                    } catch (GaragesListOutOfBoundsException e) {
-                        System.out.println("Printing error..");
-                    }
-                    System.out.println("Which garage would you like to remove? ");
-                    int garageIndex = new Scanner(System.in).nextInt();
-
-                    try {
-                        if (currentGarage != garageIndex) {
-                            allGarages.removeGarage(garageIndex);
-                            System.out.println("Garage " + garageIndex + " removed!");
-                        } else {
-                            System.out.println("You chosed the current garage. You have to select another garage before removing current garage!");
-                        }
-                    } catch (VehiclesListOutOfBoundsException e) {
-                        System.out.println("Removing garage failed...");
-                    }
-
+                    menuDisplay_RemoveOneGarage();
                     break;
                 case 10:
                     run = false; //exit
@@ -164,7 +87,7 @@ public class UI {
         }
     }
 
-    public void listMainFunctions() {
+    private void menuDisplay() {
         System.out.println();
         System.out.println("--Garage functions--");
         System.out.println("1. List all parked vehicles in the garage");
@@ -176,15 +99,128 @@ public class UI {
         System.out.println("7. Select a garage to be used");
         System.out.println("8. Add one garage");
         System.out.println("9. Remove one garage");
-        System.out.println("10. Quit");
-        System.out.println();
+        System.out.println("10. Quit" + "\n");
+        System.out.print("Write to select: ");
+
+    }
+
+    private void menuDisplay_AllVehicles(){
+        System.out.println("Listing all parked vehicles in the current garage: ");
+
+        try {
+            allGarages.get(currentGarage).printAllVehicles();
+        }catch (VehicleNotFoundException e){
+            System.out.println("No vehicles to list...");
+        }
+    }
+
+    private void menuDisplay_AllVehicleTypes(){
+        System.out.println("Listing all parked vehicle types in the current garage: ");
+
+        try {
+            allGarages.get(currentGarage).printAllVehicleTypes();
+        }catch (VehicleNotFoundException e){
+            System.out.println("No vehicle types to list...");
+        }
+    }
+
+    private void menuDisplay_ParkVehicle(){
+        System.out.println("What kind of vehicle would you like to park in the current garage?");
+        System.out.println("Choose type (1. Aeroplane, 2. Boat, 3. Bus, 4. Car, 5. Motorcycle): ");
+
+        parkVehicle(new Scanner(System.in).nextByte(), currentGarage);
+    }
+
+    private void menuDisplay_UnparkVehicle(){
+        System.out.println("Which vehicle would you like to unpark in the current garage?");
+        System.out.println("Write registration number: ");
+        unParkVehicle(new Scanner(System.in).next(), currentGarage);
+    }
+
+    private void menuDisplay_setGarageSize(){
+        System.out.println("Resize the garage to how many parking spaces? There are currently " +
+                allGarages.get(currentGarage).getVehiclesListSize() +
+                " parked vehicles, and the size of the garage is " + allGarages.get(currentGarage).getMaxCars());
+        System.out.println("WARNING: This may completely destroy and annihilate currently parked vehicles!");
+        System.out.print("Write parking spaces: ");
+
+        int input = new Scanner(System.in).nextInt();
+
+        try {
+            allGarages.get(currentGarage).changeMaxCapacity(input);
+            System.out.println("Changed max capacity");
+        }catch (VehiclesListOutOfBoundsException e){
+            System.out.println("Invalid size...");
+        }
+    }
+
+    private void menuDisplay_searchByVehicleProperty(){
+        System.out.println("What kind of property would you like to search by?");
+        System.out.println("Choose type (1. Registration number, 2. Number of wheels, 3. Color): ");
+        findVehicle(new Scanner(System.in).nextByte(), currentGarage);
+    }
+
+    private void menuDisplay_selectGarage(){
+        System.out.println("Listing all garages by their ID: ");
+
+        try {
+            allGarages.printAllGarages();
+
+            System.out.println("Write the ID to select: ");
+            int id = new Scanner(System.in).nextInt();
+
+            if(allGarages.isIdValid(id)){
+                currentGarage = id;
+                System.out.println("Garage with ID of " + id + " selected...");
+            }
+        }catch (GaragesListOutOfBoundsException e){
+            System.out.println("Garage list out of bounds...");
+        }
+    }
+
+    private void menuDisplay_addOneGarage(){
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("What do you want the garage to be called? ");
+        String name = in.next();
+
+        System.out.print("How many parking spots would you like in your new garage? ");
+        int parkingSpots = in.nextInt();
+
+        try {
+            allGarages.addGarage(parkingSpots, name);
+            System.out.print("Garage created...");
+        } catch (VehiclesListOutOfBoundsException e) {
+            System.out.println("Creating garage failed...");
+        }
+    }
+
+    private void menuDisplay_RemoveOneGarage(){
+        try {
+            allGarages.printAllGarages();
+        } catch (GaragesListOutOfBoundsException e) {
+            System.out.println("Printing error..");
+        }
+        System.out.println("Which garage would you like to remove? ");
+        int garageIndex = new Scanner(System.in).nextInt();
+
+        try {
+            if (currentGarage != garageIndex) {
+                allGarages.removeGarage(garageIndex);
+                System.out.println("Garage " + garageIndex + " removed!");
+            } else {
+                System.out.println("You chosed the current garage. You have to select another garage before removing current garage!");
+            }
+        } catch (VehiclesListOutOfBoundsException e) {
+            System.out.println("Removing garage failed...");
+        }
     }
 
     /**
-     * Unparks a specific Vehicle (indicated by registration number) in the current Garage
-     * @param regNr registration number
-     * @param currentGarage index of the current Garage
-     */
+    * Unparks a specific Vehicle (indicated by registration number) in the current Garage
+    * @param regNr registration number
+    * @param currentGarage index of the current Garage
+    */
     public void unParkVehicle(String regNr, int currentGarage) {
         allGarages.get(currentGarage).removeVehicle(regNr);
     }

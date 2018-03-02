@@ -17,6 +17,10 @@ public class Garage {
         this.name = name;
     }
 
+    public int getMaxCars(){
+        return maxCars;
+    }
+
     public int getVehiclesListSize(){
         return vehiclesList.size();
     }
