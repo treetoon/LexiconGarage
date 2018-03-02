@@ -22,6 +22,7 @@ public class Garage {
     }
 
     //Functions
+
     /**
      * Changes the maximum capacity of the garage to the maxSize
      *

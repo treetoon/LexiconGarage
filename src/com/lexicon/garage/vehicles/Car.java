@@ -1,6 +1,7 @@
 package com.lexicon.garage.vehicles;
 
 import com.lexicon.garage.Vehicle;
+import com.lexicon.garage.vehicles.types.FuelType;
 
 public class Car extends Vehicle {
     private FuelType GASOLINE;
