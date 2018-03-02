@@ -1,5 +1,6 @@
 package com.lexicon.ui;
 
+import com.lexicon.garage.Garage;
 import com.lexicon.garage.GarageHandler;
 import com.lexicon.garage.Vehicle;
 import com.lexicon.garage.exceptions.GaragesListOutOfBoundsException;
@@ -112,10 +113,35 @@ public class UI {
                     }
                     break;
                 case 8:
-                    //addGarage()
+                    System.out.print("How many parking spots would you like in your new garage?");
+                    int parkingSpots = new Scanner(System.in).nextInt();
+
+                    try {
+                        allGarages.addGarage(parkingSpots);
+                    } catch (VehiclesListOutOfBoundsException e) {
+                        System.out.println("Creating garage failed");
+                    }
                     break;
                 case 9:
-                    //removeGarage()
+                    try {
+                        allGarages.printAllGarages();
+                    } catch (GaragesListOutOfBoundsException e) {
+                        System.out.println("Printing error..");
+                    }
+                    System.out.println("Which garage would you like to remove?");
+                    int garageIndex = new Scanner(System.in).nextInt();
+
+                    try {
+                        if (currentGarage != garageIndex) {
+                            allGarages.removeGarage(garageIndex);
+                        } else {
+                            System.out.println("You chosed the current garage. You have to select another garage before removing current garage!");
+                        }
+                        System.out.println("Garage " + garageIndex + " removed!");
+                    } catch (VehiclesListOutOfBoundsException e) {
+                        System.out.println("Removing garage failed");
+                    }
+
                     break;
                 case 10:
                     run = false; //exit

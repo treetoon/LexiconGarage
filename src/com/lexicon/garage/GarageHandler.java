@@ -44,7 +44,7 @@ public class GarageHandler {
     }
 
     public void removeGarage(int index) throws VehiclesListOutOfBoundsException {
-        if(index > 0)
+        if(index >= 0)
             garagesList.remove(index);
         else
             throw new VehiclesListOutOfBoundsException();
@@ -74,7 +74,7 @@ public class GarageHandler {
         if(garagesList.isEmpty())
             throw new GaragesListOutOfBoundsException();
 
-        if(id < garagesList.size() && id <= 0)
+        if(id <= garagesList.size() && id >= 0)
             return true;
 
         throw new GaragesListOutOfBoundsException();

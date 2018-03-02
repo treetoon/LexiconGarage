@@ -40,9 +40,10 @@ public class Garage {
                         list.add(vehicle);
                     }
                 }
+                vehiclesList = list;
             }
             this.maxCars = maxSize;
-            vehiclesList = list;
+
         } else
             throw new VehiclesListOutOfBoundsException();
     }
