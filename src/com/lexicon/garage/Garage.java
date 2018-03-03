@@ -190,6 +190,6 @@ public class Garage implements Serializable {
 
     @Override
     public String toString() {
-        return  "Name: " + name + ", Parking spots: " + maxCars;
+        return  "Name: " + name + ", Max parking spots: " + maxCars;
     }
 }

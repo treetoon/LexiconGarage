@@ -1,16 +1,14 @@
 package com.lexicon.garage;
 
 import com.lexicon.garage.exceptions.GaragesListOutOfBoundsException;
-import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.exceptions.VehiclesListOutOfBoundsException;
-import com.lexicon.garage.vehicles.Airplane;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GarageHandler implements Serializable {
+public class GarageHandler {
     private List<Garage> garagesList = new ArrayList<>();
 
     public GarageHandler()
@@ -21,7 +19,7 @@ public class GarageHandler implements Serializable {
         try{
             addGarage(totSpots, name); //total parking spots to add
         }catch (VehiclesListOutOfBoundsException e){
-            System.out.println("Invalid Vehicle size...");
+            System.out.println("Invalid vehicle size...");
         }
     }
 
@@ -79,9 +77,9 @@ public class GarageHandler implements Serializable {
     /**
      * Checks if the entered Garage id is within bounds of the ArrayList
      *
-     * @param id : used to select a garage in the ArrayList
-     * @return bool : returns true if within bounds
-     * @throws GaragesListOutOfBoundsException
+     * @param id used to select a garage in the ArrayList
+     * @return bool returns true if within bounds
+     * @throws GaragesListOutOfBoundsException when the array is empty or out of bounds
      */
     public boolean isIdValid(int id) throws GaragesListOutOfBoundsException {
         if(garagesList.isEmpty())
@@ -93,6 +91,7 @@ public class GarageHandler implements Serializable {
         throw new GaragesListOutOfBoundsException();
     }
 
+    //lets not read manually
 //    public static void readFile(){
 //        try(BufferedReader buff = new BufferedReader(new FileReader("garages.txt")))
 //        {
@@ -113,29 +112,47 @@ public class GarageHandler implements Serializable {
 //        }
 //    }
 
-    public void readFile(){
-        try {
-            FileInputStream fi = new FileInputStream(new File("garages.txt"));
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            garagesList = (ArrayList<Garage>) oi.readObject();
-        } catch (FileNotFoundException e) {
+    @SuppressWarnings("unchecked")
+    public boolean readFile(){
+        try{
+            File file = new File("garages.txt");
+
+            if(file.exists()){
+                ObjectInputStream oi = new ObjectInputStream(new FileInputStream(file));
+                garagesList = (ArrayList<Garage>) oi.readObject(); //cast should be safe, dw compiler
+
+                oi.close();
+                return true;
+            }
+        }catch(FileNotFoundException e){
+            System.out.println("File could not be found...");
             e.printStackTrace();
-        } catch (IOException e) {
+        }catch(ClassNotFoundException e){
+            System.out.println("Could not find the class... ");
+            e.printStackTrace();
+        }catch(EOFException e){
+            System.out.println("End of file, likely occurred due to the file being empty...");
+            e.printStackTrace();
+        }catch(IOException e){
             e.printStackTrace();
         }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        System.out.println("Could not read the garage file... " +
+                "Please name it \"garages.txt\" and place it in the corresponding directory with the correct object data. ");
+
+        return false; //file could not be read
     }
 
     public void writeFile() {
-        try {
+        try{
             FileOutputStream f = new FileOutputStream(new File("garages.txt"));
             ObjectOutputStream o = new ObjectOutputStream(f);
+
             o.writeObject(garagesList);
-        } catch (FileNotFoundException e) {
+        }catch(FileNotFoundException e){
+            System.out.println("File could not be found...");
             e.printStackTrace();
-        } catch (IOException e) {
+        }catch(IOException e){
             e.printStackTrace();
         }
     }

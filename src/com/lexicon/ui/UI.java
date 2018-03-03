@@ -8,22 +8,20 @@ import com.lexicon.garage.exceptions.VehicleNotFoundException;
 import com.lexicon.garage.vehicles.*;
 import com.lexicon.garage.vehicles.types.FuelType;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
 public class UI {
-    private GarageHandler allGarages = null;
+    private GarageHandler allGarages = new GarageHandler();
     private int currentGarage = 0;
 
-    public UI() { printMenu();
+    public UI()
+    {
     }
 
     public static void main(String[] args) {
         UI ui = new UI(); //run program
+        ui.printMenu();
     }
 
     public void printMenu() {
@@ -35,10 +33,9 @@ public class UI {
         int totSpots = 0;
 
         do{
-            if (new File("garages.txt").exists()) {
-                allGarages=new GarageHandler();
-                allGarages.readFile();
-           } else {
+            if (allGarages.readFile()){ //try to read file
+                System.out.print("Garage file read successfully...");
+            }else{ //create a garage
                 Scanner scanner = new Scanner(System.in);
 
                 System.out.print("Give the garage a name: ");
@@ -49,8 +46,7 @@ public class UI {
 
                 allGarages = new GarageHandler(totSpots, firstGarageName);
             }
-
-        }while (allGarages.getGarageListSize() <= 0);
+        }while (allGarages.getGarageListSize() <= 0); //loop till a garage has been created
 
         System.out.println(totSpots + " parking spots created inside one garage...");
 
@@ -90,7 +86,7 @@ public class UI {
                     menuDisplay_RemoveOneGarage();
                     break;
                 case 10:
-                    menuDisplay_saveToFile();
+                    menuDisplay_writeToFile();
                     break;
                 case 11:
                     run = false; //exit
@@ -114,7 +110,9 @@ public class UI {
         System.out.println("10. Save to file");
         System.out.println("11. Quit");
         System.out.println();
-        System.out.print("Write to select: ");
+        System.out.println("You are currently working on garage with "
+                + allGarages.get(currentGarage) + ", and ID: " + currentGarage);
+        System.out.print("MENU SELECT: ");
 
     }
 
@@ -235,7 +233,7 @@ public class UI {
         }
     }
 
-    private void menuDisplay_saveToFile(){
+    private void menuDisplay_writeToFile(){
         allGarages.writeFile();
     }
 
