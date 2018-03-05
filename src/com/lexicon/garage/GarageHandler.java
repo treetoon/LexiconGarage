@@ -19,7 +19,7 @@ public class GarageHandler {
         try{
             addGarage(totSpots, name); //total parking spots to add
         }catch (VehiclesListOutOfBoundsException e){
-            System.out.println("Invalid vehicle size...");
+            System.out.println("Invalid size...");
         }
     }
 
@@ -51,7 +51,7 @@ public class GarageHandler {
      * @throws VehiclesListOutOfBoundsException
      */
     public void removeGarage(int index) throws VehiclesListOutOfBoundsException {
-        if(index >= 0)
+        if(index >= 0 && index < garagesList.size())
             garagesList.remove(index);
         else
             throw new VehiclesListOutOfBoundsException();
@@ -91,27 +91,10 @@ public class GarageHandler {
         throw new GaragesListOutOfBoundsException();
     }
 
-    //lets not read manually
-//    public static void readFile(){
-//        try(BufferedReader buff = new BufferedReader(new FileReader("garages.txt")))
-//        {
-//            StringBuilder builder = new StringBuilder();
-//            String oneRow = "";
-//
-//            System.out.println("Garage file read successfully...");
-//
-//            while(oneRow != null) {
-//                oneRow = buff.readLine();
-//                builder.append(oneRow);
-//            }
-//
-//            System.out.println(builder);
-//        }catch (IOException e){
-//            System.out.println("Could not locate the garage file... " +
-//                    "Please name it \"garages.txt\" and place it in the corresponding directory. ");
-//        }
-//    }
-
+    /**
+     * Reads objects from text file
+     * @return returns true if reading file was a success, otherwise false
+     */
     @SuppressWarnings("unchecked")
     public boolean readFile(){
         try{
@@ -137,12 +120,12 @@ public class GarageHandler {
             e.printStackTrace();
         }
 
-        System.out.println("Could not read the garage file... " +
-                "Please name it \"garages.txt\" and place it in the corresponding directory with the correct object data. ");
-
         return false; //file could not be read
     }
 
+    /**
+     * Writes objects to file
+     */
     public void writeFile() {
         try{
             FileOutputStream f = new FileOutputStream(new File("garages.txt"));

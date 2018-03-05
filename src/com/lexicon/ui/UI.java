@@ -31,13 +31,16 @@ public class UI {
         System.out.println("---Welcome to Garage 0.1---");
 
         int totSpots = 0;
-        boolean tryRead = true;
 
-        do{
-            if (tryRead && allGarages.readFile()){ //try to read file
-                System.out.print("Garage file read successfully...");
-            }else{ //create a garage
-                tryRead = false;
+        do {
+            boolean isReadFileSuccess = allGarages.readFile();
+            if (isReadFileSuccess) { //try to read file
+                if (isReadFileSuccess)
+                    System.out.print("Garage file read successfully...");
+                else
+                    System.out.println("Could not read the garage file... " +
+                            "Please name it \"garages.txt\" and place it in the corresponding directory with the correct object data. ");
+            } else { //create a garage
                 Scanner scanner = new Scanner(System.in);
 
                 System.out.print("Give the garage a name: ");
@@ -48,10 +51,10 @@ public class UI {
 
                 allGarages = new GarageHandler(totSpots, firstGarageName);
 
-                if(totSpots > 0)
+                if (totSpots > 0)
                     System.out.println(totSpots + " parking spot(s) created inside one garage...");
             }
-        }while (allGarages.getGarageListSize() <= 0); //loop till a garage has been created
+        } while (allGarages.getGarageListSize() <= 0); //loop till a garage has been created
 
         Scanner sc = new Scanner(System.in);
         byte choice = 0;
