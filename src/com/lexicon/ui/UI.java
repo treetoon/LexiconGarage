@@ -15,8 +15,7 @@ public class UI {
     private GarageHandler allGarages = new GarageHandler();
     private int currentGarage = 0;
 
-    public UI()
-    {
+    public UI() {
     }
 
     public static void main(String[] args) {
@@ -34,7 +33,8 @@ public class UI {
 
         do {
             boolean isReadFileSuccess = allGarages.readFile();
-            if (isReadFileSuccess) { //try to read file
+
+            if (isReadFileSuccess) {
                 if (isReadFileSuccess)
                     System.out.print("Garage file read successfully...");
                 else
@@ -125,40 +125,40 @@ public class UI {
 
     }
 
-    private void menuDisplay_AllVehicles(){
+    private void menuDisplay_AllVehicles() {
         System.out.println("Listing all parked vehicles in the current garage: ");
 
         try {
             allGarages.get(currentGarage).printAllVehicles();
-        }catch (VehicleNotFoundException e){
+        } catch (VehicleNotFoundException e) {
             System.out.println("No vehicles to list...");
         }
     }
 
-    private void menuDisplay_AllVehicleTypes(){
+    private void menuDisplay_AllVehicleTypes() {
         System.out.println("Listing all parked vehicle types in the current garage: ");
 
         try {
             allGarages.get(currentGarage).printAllVehicleTypes();
-        }catch (VehicleNotFoundException e){
+        } catch (VehicleNotFoundException e) {
             System.out.println("No vehicle types to list...");
         }
     }
 
-    private void menuDisplay_ParkVehicle(){
+    private void menuDisplay_ParkVehicle() {
         System.out.println("What kind of vehicle would you like to park in the current garage?");
         System.out.println("Choose type (1. Aeroplane, 2. Boat, 3. Bus, 4. Car, 5. Motorcycle): ");
 
         parkVehicle(new Scanner(System.in).nextByte(), currentGarage);
     }
 
-    private void menuDisplay_UnparkVehicle(){
+    private void menuDisplay_UnparkVehicle() {
         System.out.println("Which vehicle would you like to unpark in the current garage?");
         System.out.println("Write registration number: ");
         unParkVehicle(new Scanner(System.in).next(), currentGarage);
     }
 
-    private void menuDisplay_setGarageSize(){
+    private void menuDisplay_setGarageSize() {
         System.out.println("Resize the garage to how many parking spaces? There are currently " +
                 allGarages.get(currentGarage).getVehiclesListSize() +
                 " parked vehicles, and the size of the garage is " + allGarages.get(currentGarage).getMaxCars());
@@ -170,18 +170,18 @@ public class UI {
         try {
             allGarages.get(currentGarage).changeMaxCapacity(input);
             System.out.println("Changed max capacity");
-        }catch (VehiclesListOutOfBoundsException e){
+        } catch (VehiclesListOutOfBoundsException e) {
             System.out.println("Invalid size...");
         }
     }
 
-    private void menuDisplay_searchByVehicleProperty(){
+    private void menuDisplay_searchByVehicleProperty() {
         System.out.println("What kind of property would you like to search by?");
         System.out.println("Choose type (1. Registration number, 2. Number of wheels, 3. Color): ");
         findVehicle(new Scanner(System.in).nextByte(), currentGarage);
     }
 
-    private void menuDisplay_selectGarage(){
+    private void menuDisplay_selectGarage() {
         System.out.println("Listing all garages by their ID: ");
 
         try {
@@ -190,16 +190,16 @@ public class UI {
             System.out.println("Write the ID to select: ");
             int id = new Scanner(System.in).nextInt();
 
-            if(allGarages.isIdValid(id)){
+            if (allGarages.isIdValid(id)) {
                 currentGarage = id;
                 System.out.println("Garage with ID of " + id + " selected...");
             }
-        }catch (GaragesListOutOfBoundsException e){
+        } catch (GaragesListOutOfBoundsException e) {
             System.out.println("Garage list out of bounds...");
         }
     }
 
-    private void menuDisplay_addOneGarage(){
+    private void menuDisplay_addOneGarage() {
         Scanner in = new Scanner(System.in);
 
         System.out.print("What do you want the garage to be called? ");
@@ -216,7 +216,7 @@ public class UI {
         }
     }
 
-    private void menuDisplay_RemoveOneGarage(){
+    private void menuDisplay_RemoveOneGarage() {
         try {
             allGarages.printAllGarages();
         } catch (GaragesListOutOfBoundsException e) {
@@ -229,7 +229,7 @@ public class UI {
             if (currentGarage != garageIndex) {
                 allGarages.removeGarage(garageIndex);
 
-                if (allGarages.getGarageListSize() >= garageIndex-1) {
+                if (allGarages.getGarageListSize() >= garageIndex - 1) {
                     currentGarage--;
                 }
 
@@ -242,22 +242,24 @@ public class UI {
         }
     }
 
-    private void menuDisplay_writeToFile(){
+    private void menuDisplay_writeToFile() {
         allGarages.writeFile();
     }
 
     /**
-    * Unparks a specific Vehicle (indicated by registration number) in the current Garage
-    * @param regNr registration number
-    * @param currentGarage index of the current Garage
-    */
+     * Unparks a specific Vehicle (indicated by registration number) in the current Garage
+     *
+     * @param regNr         registration number
+     * @param currentGarage index of the current Garage
+     */
     public void unParkVehicle(String regNr, int currentGarage) {
         allGarages.get(currentGarage).removeVehicle(regNr);
     }
 
     /**
      * Finds a Vehicle in the current Garage
-     * @param input indicating the function the user has chosen
+     *
+     * @param input         indicating the function the user has chosen
      * @param currentGarage index of the current Garage
      */
     public void findVehicle(byte input, int currentGarage) {
@@ -304,7 +306,8 @@ public class UI {
 
     /**
      * Parks a specific Vehicle in the current Garage
-     * @param input input indicating the type of Vehicle
+     *
+     * @param input         input indicating the type of Vehicle
      * @param currentGarage index of current Garage
      */
     public void parkVehicle(byte input, int currentGarage) {
