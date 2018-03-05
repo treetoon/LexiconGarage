@@ -132,6 +132,7 @@ public class GarageHandler {
             ObjectOutputStream o = new ObjectOutputStream(f);
 
             o.writeObject(garagesList);
+            System.out.println("Write successful...");
         }catch(FileNotFoundException e){
             System.out.println("File could not be found...");
             e.printStackTrace();

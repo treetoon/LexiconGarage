@@ -20,7 +20,7 @@ public class UI {
     }
 
     public static void main(String[] args) {
-        UI ui = new UI(); //run program
+        UI ui = new UI();
         ui.printMenu();
     }
 
@@ -96,6 +96,9 @@ public class UI {
                     break;
                 case 11:
                     run = false; //exit
+                    break;
+                default:
+                    System.out.println("Invalid input...");
                     break;
             }
         }
